@@ -1,0 +1,11 @@
+Done on Windows:
+
+Clone repo as described in github
+
+Running runBattery1D requires the minGW add-on in MATLAB.
+Go to the Home tab, under Environment click on the add-on icon and then get add-on.
+Search for minGW.
+
+Now you can run runBattery1D.
+
+Chen2020 does not seem to be working?
