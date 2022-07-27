@@ -1,0 +1,6 @@
+Veldig enkelt å installere:
+
+pip install pybamm
+
+(Når jeg installerte fikk jeg problemer med casadi python pakka, pip install casadi fiksa det)
+

@@ -1,0 +1,36 @@
+Denne er noe vanskeligere.
+
+Krever å allerede ha installert FENicS og multiphenics. Den nyeste versjonen av disse er FENicSx og multiphenicsx
+Merk: Githuben har et shell script som gjør det for deg.
+
+For Ubuntu kan FENicS installeres via:
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:fenics-packages/fenics
+sudo apt-get update
+sudo apt-get install fenics
+
+Multiphenicsx kan installeres via git (https://github.com/multiphenics/multiphenicsx)
+
+git clone https://github.com/multiphenics/multiphenicsx.git
+pip3 install .[tutorials]
+
+For å installere cideMOD (se https://github.com/cidetec-energy-storage/cideMOD)
+
+git clone https://github.com/cidetec-energy-storage/cideMOD.git
+cd cideMOD
+pip install .
+
+Man må legge til gmsh i path via 
+export PYTHONPATH=$PYTHONPATH:<path_to_gmsh_libs>
+eller 
+export PYTHONPATH=$PYTHONPATH:$(find /usr/local/lib -name "gmsh-*-sdk")/lib
+
+Det går nå an å prøve 
+pytest -m "Chen and p2d and validation"
+
+For meg validerer den kun en av testene, men Chen.ipynb virker å fungere (men bare etter å ha endret usetex=False under compare results)
+Når jeg prøvde å kjøre p2d alene klarer den bare å fullføre 66%.
+
+De hevder dette er en pxd model, men de har ingen 2D eksempler. Jeg ser heller ikke hvordan jeg kan 
+kjøre noe mer enn 1D Chen. Safari jupyter notebooken virker ikke til å stoppe når det står at den
+skal det.
