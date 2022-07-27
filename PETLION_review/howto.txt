@@ -1,0 +1,14 @@
+Gitt at Julia er riktig installert og i PATH:
+
+Gå inn i Julia på terminalen:
+import Pkg
+Pkg.add("PETLION")
+
+Selv det å kjøre noe helt enkelt typ:
+using PETLION
+p = petlion(LCO)
+
+sol = simulate(p, I=2, SOC=0, V_max=4.1)
+simulate!(sol, p, 1800, V=:hold, I_min=1/20)
+
+Får min PC til å krasje, den stasjonære pcen til Olav bruker også flere minutter. Da viser den ikke en gang et plot.
