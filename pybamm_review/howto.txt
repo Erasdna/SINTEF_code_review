@@ -21,3 +21,9 @@ Liknende feil vil oppstå hver gang jax.partial er nevnt. Du kan fikse dette ved
 jax.partial -> jax.tree_util.Partial
 (Jeg måtte bare gjøre dette to ganger i det ovennevnte eksempelet).
 
+Nedlasting fra pip: Pass på hvilken versjon som lastes ned av pip! Pip har en tendens til å gi deg en veldig gammel versjon.
+I mitt tilfelle ga den en versjon fra 2 år siden. Dette skaper litt problemer siden eksemplene på github ikke tilsvarer den versjonen man faktisk bruker.
+
+Med 0.2.4.post3:
+Ved endring av antall punkter (se tutotrial 9 under getting started). Det er ikke nok å bare bruke en string som det står i eksempelet. Variablene i dicten må defineres som pybamm.standard_spatial_vars.x_n osv. istedenfor bare "x_n"
+
