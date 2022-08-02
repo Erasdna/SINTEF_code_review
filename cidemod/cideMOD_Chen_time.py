@@ -26,7 +26,7 @@ t_f = 3600 /abs(C_rate)*1.25
 v_min = Trigger(2.5, "v")
 
 #Problemstørrelse
-Nx=np.linspace(5,205,11)
+Nx=np.arange(100,1000,100)
 #Tid
 Tt=np.empty([0,0]);
 #Iterer gjennom de forskjellige størrelsene
@@ -52,6 +52,7 @@ for i in Nx:
 #if isinstance(status, SolverCrashed):
 #    raise status.args[0]
 
+np.savetxt("cideMODTime.txt", (Tt,Nx))
 
 plt.rc('text', usetex=False)
 plt.rc('font', family='serif')

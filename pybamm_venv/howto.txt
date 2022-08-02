@@ -27,3 +27,5 @@ I mitt tilfelle ga den en versjon fra 2 år siden. Dette skaper litt problemer s
 Med 0.2.4.post3:
 Ved endring av antall punkter (se tutotrial 9 under getting started). Det er ikke nok å bare bruke en string som det står i eksempelet. Variablene i dicten må defineres som pybamm.standard_spatial_vars.x_n osv. istedenfor bare "x_n"
 
+For å få den ferskeste versjonen av PyBaMM kan man følge: https://github.com/pybamm-team/PyBaMM/blob/develop/docs/install/install-from-source.rst
+
