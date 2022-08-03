@@ -17,7 +17,7 @@ import time as tm
 #Path til Chen data
 overwrite = True
 case = "Chen_2020"
-data_path = "/home/andreas/Documents/SINTEF_code_review/cideMOD_review/Data/data_{}".format(case)
+data_path = "/home/andreas/Documents/SINTEF_code_review/cidemod/Data/data_{}".format(case)
 params = "params_tuned.json"
 
 C_rate = -1
@@ -29,10 +29,11 @@ v_min = Trigger(2.5, "v")
 Nx=np.arange(100,1000,100)
 #Tid
 Tt=np.empty([0,0]);
+its=np.empty([0,0])
 #Iterer gjennom de forskjellige størrelsene
 for i in Nx:
     #P2D modell
-    model_options = ModelOptions(mode='P2D', clean_on_exit=False,N_x=i)
+    model_options = ModelOptions(mode='P2D', clean_on_exit=False,N_x=i,N_y=1,N_z=1)
     cell = CellParser(params, data_path=data_path)
     problem = Problem(cell, model_options)
     #Set SOC, Text, Tint
@@ -43,26 +44,28 @@ for i in Nx:
     strt=tm.time()
     #Solve
     status = problem.solve_ie(
-        min_step=5, i_app=I_app, t_f=t_f, store_delay=10, adaptive=True, triggers=[v_min]
+        min_step=36, i_app=I_app, t_f=t_f, store_delay=10, adaptive=True, triggers=[v_min]
     )
     Tt=np.append(Tt,tm.time()-strt)
+    its=np.append(its,len(problem.WH.global_var_arrays[3]))
+
 
 #err = ErrorCheck(problem, status)
 
 #if isinstance(status, SolverCrashed):
 #    raise status.args[0]
 
-np.savetxt("cideMODTime.txt", (Tt,Nx))
+np.savetxt("cideMODTime2.txt", (Tt,Nx,its))
 
-plt.rc('text', usetex=False)
-plt.rc('font', family='serif')
-# fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
-fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
-# plot thime over problem size
-ax1.plot(Nx, Tt, "-.")
-ax1.set_xlabel("Problem size")
-ax1.set_ylabel("Time [s]")
-ax1.legend(["cideMOD"], loc="best")
+# plt.rc('text', usetex=False)
+# plt.rc('font', family='serif')
+# # fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
+# fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
+# # plot thime over problem size
+# ax1.plot(Nx, Tt, "-.")
+# ax1.set_xlabel("Problem size")
+# ax1.set_ylabel("Time [s]")
+# ax1.legend(["cideMOD"], loc="best")
 
-plt.tight_layout()
-plt.show()
+# plt.tight_layout()
+# plt.show()
