@@ -26,8 +26,9 @@ t_f = 3600 /abs(C_rate)*1.25
 v_min = Trigger(2.5, "v")
 
 #Problemstørrelse
-Nx=np.arange(100,1000,100)
+Nx=np.arange(10,300,90)
 #Tid
+pbs=[]
 Tt=np.empty([0,0]);
 its=np.empty([0,0])
 #Iterer gjennom de forskjellige størrelsene
@@ -36,6 +37,7 @@ for i in Nx:
     model_options = ModelOptions(mode='P2D', clean_on_exit=False,N_x=i,N_y=1,N_z=1)
     cell = CellParser(params, data_path=data_path)
     problem = Problem(cell, model_options)
+    pbs.append(problem)
     #Set SOC, Text, Tint
     problem.set_cell_state(1, 273 + 25, 273 + 25)
     problem.setup()
@@ -57,6 +59,7 @@ for i in Nx:
 
 np.savetxt("cideMODTime2.txt", (Tt,Nx,its))
 
+##Time vd problem size plot
 # plt.rc('text', usetex=False)
 # plt.rc('font', family='serif')
 # # fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
@@ -69,3 +72,16 @@ np.savetxt("cideMODTime2.txt", (Tt,Nx,its))
 
 # plt.tight_layout()
 # plt.show()
+
+#Voltage vs time comp
+# fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
+fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
+# plot the 1C results over time
+for i in range(len(Nx)-1):
+    ax1.plot(pbs[i].WH.global_var_arrays[0], pbs[i].WH.global_var_arrays[1], "-.")
+ax1.set_xlabel("Time [s]")
+ax1.set_ylabel("Voltage [V]")
+ax1.legend(["Nx=100", "Nx=190", "Nx=280"], loc="best")
+
+plt.tight_layout()
+plt.show()
