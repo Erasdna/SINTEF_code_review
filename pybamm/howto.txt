@@ -1,0 +1,24 @@
+Det er mulig å laste ned Pybamm via pip, men det er viktig å sjekke at det er den nyeste versjonen. For øyeblikket (august 2022) støtter ikke den nyeste versjonen python 3.10, hvis du laster ned pybamm med denne versjonen av python får du dermed en veldig gammel versjon av pybamm. Sjekk om den nyeste versjonen av pybamm er kompatibel med den versjonen av python du kjører!
+
+Hvis du må kjøre med python 3.9 kan du gjøre følgende for å laste ned python 3.9 og opprette en virtual environment hvor pybamm kan bo:
+
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.9
+
+Du kan nå kjøre python 3.9 ved å skrive python3.9 i terminalen
+
+For å opprette en virtual environment:
+
+sudo  apt-get install python3.9-dev python3.9-venv
+python3.9 -m venv [navn her]
+source [navn her]/bin/activate
+pip install pybamm
+
+Sjekk versjonen opp mot github!
+
+
+Hvis dette ikke funker kan man også gjøre en dev install. Følg lenken under:
+https://github.com/pybamm-team/PyBaMM/blob/develop/docs/install/install-from-source.rst
+
