@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"julia.environmentPath": "/home/andreas/Documents/SINTEF_code_review"
+	}
+}
