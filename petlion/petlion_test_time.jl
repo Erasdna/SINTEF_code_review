@@ -2,7 +2,7 @@ println("Starting")
 
 using PETLION, Plots, DelimitedFiles
 
-N=10:10:30;
+N=10:10:50;
 
 tm=[];
 tm2=[];
