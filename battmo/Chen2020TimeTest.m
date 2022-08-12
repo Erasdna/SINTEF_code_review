@@ -1,3 +1,8 @@
+%%
+%Function taking multiplicative factor to run the Chen 2020 example
+%Used in plotTime.m
+%
+%%
 %% Chen model
 % Include presentation of the test case (use rst format)
 function timed=Chen2020TimeTest(mult)

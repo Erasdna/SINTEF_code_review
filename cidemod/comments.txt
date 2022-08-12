@@ -1,9 +1,0 @@
-Diverse:
-
-Fysikk:
-Har en thermal, SEI og mechanical model.
-
-Jupyter notebooks:
-Safari: Artikkel som diskuterer SEI og aldring av batterier. Begge simulasjonene kjører på ca 3-4 min. Plottingen virker ganske meningsløs. Arrayene de setter inn virker ikke å inneholde noe. Det kan se ut som om resultatet simulasjonen produserer bare er samme tallet om og om igjen, jeg er litt usikker på om feilen er i SEI modellen eller et annet sted.
-
-Xu: Artikkel som snakker om Na batterier med en litt annen anode for å tillate større positive ioner. P2D kjører på 5 min, P4D kjører på mer en 1.5 time på min pc
