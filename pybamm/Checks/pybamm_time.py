@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 parameter_values = pybamm.ParameterValues(chemistry=pybamm.parameter_sets.Chen2020)
 model = pybamm.lithium_ion.DFN()
 
-N=np.arange(50,400,50)
+N=np.arange(10,400,20)
 print(N)
 Tt=np.empty([0,0])  
 

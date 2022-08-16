@@ -2,8 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-cideMOD=np.loadtxt("cidemod/cideMODTime2.txt")
-pybamm=np.loadtxt("pybamm/Kode/pybammTime.txt")
+cideMOD=np.loadtxt("cidemod/Checks/Data/cideMODTime2.txt")
+pybamm=np.loadtxt("pybamm/Data/pybammTime3.txt")
 battmo=np.transpose(np.loadtxt("battmo/Data/battmoTime_SD_notsimple.txt"))
 petlion=np.loadtxt("petlion/Kode/petlionTime.txt")
 petlion2=np.loadtxt("petlion/Kode/petlionTime2.txt")

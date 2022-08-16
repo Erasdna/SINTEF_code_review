@@ -26,7 +26,7 @@ t_f = 3600 /abs(C_rate)*1.25
 v_min = Trigger(2.5, "v")
 
 #Problemstørrelse
-Nx=np.arange(10,300,90)
+Nx=np.arange(10,400,20)
 #Tid
 pbs=[]
 Tt=np.empty([0,0]);
@@ -57,7 +57,7 @@ for i in Nx:
 #if isinstance(status, SolverCrashed):
 #    raise status.args[0]
 
-np.savetxt("cideMODTime2.txt", (Tt,Nx,its))
+np.savetxt("cideMODTime2.txt", (Tt,3*Nx,its))
 
 ##Time vd problem size plot
 # plt.rc('text', usetex=False)
@@ -75,13 +75,13 @@ np.savetxt("cideMODTime2.txt", (Tt,Nx,its))
 
 #Voltage vs time comp
 # fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
-fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
+#fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
 # plot the 1C results over time
-for i in range(len(Nx)-1):
-    ax1.plot(pbs[i].WH.global_var_arrays[0], pbs[i].WH.global_var_arrays[1], "-.")
-ax1.set_xlabel("Time [s]")
-ax1.set_ylabel("Voltage [V]")
-ax1.legend(["Nx=100", "Nx=190", "Nx=280"], loc="best")
+#for i in range(len(Nx)-1):
+#    ax1.plot(pbs[i].WH.global_var_arrays[0], pbs[i].WH.global_var_arrays[1], "-.")
+#ax1.set_xlabel("Time [s]")
+#ax1.set_ylabel("Voltage [V]")
+#ax1.legend(["Nx=100", "Nx=190", "Nx=280"], loc="best")
 
-plt.tight_layout()
-plt.show()
+#plt.tight_layout()
+#plt.show()
