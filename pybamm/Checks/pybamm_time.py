@@ -8,7 +8,8 @@ model = pybamm.lithium_ion.DFN()
 
 N=np.arange(10,400,20)
 print(N)
-Tt=np.empty([0,0])  
+Tt=np.empty([0,0]) 
+T_exact=np.empty([0,0]) 
 
 for i in N:
     print(i)
@@ -25,6 +26,10 @@ for i in N:
     strt=tm.time()
     res=sim.solve([0,3600])
     Tt=np.append(Tt,tm.time()-strt)
+    strt=tm.time()
+    for j in range(10):
+    	res=sim.solve([0,3600])
+    T_exact=np.append(T_exact,(tm.time()-strt)/10)  
 
 
 #sim.plot()
@@ -41,4 +46,4 @@ for i in N:
 # plt.tight_layout()
 # plt.show()
 
-np.savetxt("../Data/pybammTime3.txt",(Tt,3*N))
+np.savetxt("Data/pybammTime_warmup.txt",(Tt,3*N,T_exact))

@@ -29,7 +29,8 @@ v_min = Trigger(2.5, "v")
 Nx=np.arange(10,400,20)
 #Tid
 pbs=[]
-Tt=np.empty([0,0]);
+Tt=np.empty([0,0])
+T_exact=np.empty([0,0]);
 its=np.empty([0,0])
 #Iterer gjennom de forskjellige størrelsene
 for i in Nx:
@@ -49,6 +50,12 @@ for i in Nx:
         min_step=36, i_app=I_app, t_f=t_f, store_delay=10, adaptive=True, triggers=[v_min]
     )
     Tt=np.append(Tt,tm.time()-strt)
+    start=tm.time()
+    for j in range(10):
+    	status = problem.solve_ie(
+        	min_step=36, i_app=I_app, t_f=t_f, store_delay=10, adaptive=True, triggers=[v_min]
+    	)  	
+    T_exact=np.append(T_exact,(tm.time()-strt)/10)
     its=np.append(its,len(problem.WH.global_var_arrays[3]))
 
 
@@ -57,7 +64,7 @@ for i in Nx:
 #if isinstance(status, SolverCrashed):
 #    raise status.args[0]
 
-np.savetxt("cideMODTime2.txt", (Tt,3*Nx,its))
+np.savetxt("Data/cideMODTime_exact.txt", (Tt,3*Nx,its,T_exact))
 
 ##Time vd problem size plot
 # plt.rc('text', usetex=False)

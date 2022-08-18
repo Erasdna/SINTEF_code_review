@@ -9,6 +9,7 @@ from cideMOD import (
 )
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 #Define Chen path
 overwrite = True
@@ -17,7 +18,7 @@ data_path = "Checks/Data/data_{}".format(case)
 params = "params_tuned.json"
 
 C_rate = -1
-I_app = -1 #C_rate * problem.Q
+I_app = -5 #C_rate * problem.Q
 t_f = 3600 /abs(C_rate)*1.25
 v_min = Trigger(2.5, "v")
 #P4D modell
@@ -35,3 +36,19 @@ cell = CellParser(params, data_path=data_path)
 problem= Problem(cell, model_options)
 problem.set_cell_state(1, 273 + 25, 273 + 25)
 problem.setup(mesh_engine="Cylinder") #OBS Cylinder reads thr cylinder_3.xml file in the LOCAL repo
+
+status = problem.solve_ie(
+    min_step=36, i_app=I_app, t_f=t_f, store_delay=10, adaptive=True, triggers=[v_min]
+)
+
+plt.rc('text', usetex=False)
+plt.rc('font', family='serif')
+# fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
+fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
+# plot voltage vs tid
+ax1.plot(problem.WH.global_var_arrays[0], problem.WH.global_var_arrays[1], "-.")
+ax1.set_xlabel("Time")
+ax1.set_ylabel("Voltage")
+ax1.legend(["P4D"], loc="best")
+
+np.savetxt("Cylinder_Chen.txt",(problem.WH.global_var_arrays[0], problem.WH.global_var_arrays[1]))

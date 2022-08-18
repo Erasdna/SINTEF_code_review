@@ -24,5 +24,17 @@ ax1.set_xlabel("Problem size")
 ax1.set_ylabel("Time [s]")
 ax1.legend(["cideMOD", "PyBaMM","BattMo","Petlion: AD, 1st run", "Petlion: AD, 2nd run", "Petlion: Symbolic, 1st run", "Petlion: Symbolic, 2nd run"], loc="best")
 
+plt.rc('text', usetex=False)
+plt.rc('font', family='serif')
+# fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4))
+fig, ax1 = plt.subplots(1, 1, figsize=(5.5, 4), dpi=200)
+# plot thime over problem size
+ax1.plot(cideMOD[1],cideMOD[0], ">")
+ax1.plot(pybamm[1], pybamm[0],"v")
+ax1.plot(battmo[1], battmo[0],"^")
+ax1.set_xlabel("Problem size")
+ax1.set_ylabel("Time [s]")
+ax1.legend(["cideMOD", "PyBaMM","BattMo"], loc="best")
+
 plt.tight_layout()
 plt.show()

@@ -1,9 +1,12 @@
 %Vi endrer faktoren alle størrelsene i batteriet ganges med
 mult=1:2:35;
 tm=zeros(1,length(mult));
+tm_exact=zeros(1,length(mult));
 
 for i=1:length(mult)
     tm(i)=Chen2020TimeTest(mult(i));
+    for j=1:10
+
 end
 
 fileID=fopen("battmoTime_SD_notsimple.txt",'w');

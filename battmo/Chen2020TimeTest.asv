@@ -163,17 +163,11 @@ function [timed,t_avg]=Chen2020TimeTest(mult)
     model.AutoDiffBackend= AutoDiffBackend();
     
     % Run simulation
-    t_avg=0
     tstart=tic;
     [wellSols, states, report] = simulateScheduleAD(initstate, model, schedule, 'OutputMinisteps', true, 'NonLinearSolver', nls); 
     timed=toc(tstart);
     for j=1:10
-        tstart=tic;
-        [wellSols, states, report] = simulateScheduleAD(initstate, model, schedule, 'OutputMinisteps', true, 'NonLinearSolver', nls); 
-        t_avg=t_avg + toc(tstart);
-    end
-    t_avg=t_avg/10
-
+        
 end
 
 %{
