@@ -9,6 +9,7 @@ for i=1:length(mult)
 end
 
 fileID=fopen("battmoTime_SD_notsimple_exact.txt",'w');
-%Gange med 30, som er den originale størrelsen, for å få den nye
-fprintf(fileID,'%6.2f %6.2f %6.2f \n',[tm;mult.*30, tm_exact]);
+%% Gange med 30, som er den originale størrelsen, for å få den nye
+fileID=fopen("battmoTime_SD_notsimple_exact.txt",'w');
+fprintf(fileID,['%6.2f %6.2f %6.2f \n'],[tm;mult.*30; tm_exact]);
 fclose(fileID);

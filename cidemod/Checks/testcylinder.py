@@ -1,4 +1,5 @@
 from Cylinder.cylinder import Cylinder
+from dolfin import Timer,timings,timing, list_timings, TimingClear, TimingType
 
 from cideMOD import (
     CellParser,
@@ -20,7 +21,7 @@ params = "params_tuned.json"
 C_rate = -1
 I_app = -5 #C_rate * problem.Q
 t_f = 3600 /abs(C_rate)*1.25
-v_min = Trigger(2.5, "v")
+v_min = Trigger(3.4, "v")
 #P4D modell
 #Vi setter i=5 for å se om vi får noe nyttig
 i=6
@@ -51,4 +52,5 @@ ax1.set_xlabel("Time")
 ax1.set_ylabel("Voltage")
 ax1.legend(["P4D"], loc="best")
 
+print(list_timings(TimingClear.clear, [TimingType.wall, TimingType.user]))
 np.savetxt("Cylinder_Chen.txt",(problem.WH.global_var_arrays[0], problem.WH.global_var_arrays[1]))

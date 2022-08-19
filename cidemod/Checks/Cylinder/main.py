@@ -4,11 +4,11 @@ import numpy as np
 gmsh.initialize()
 factory = gmsh.model.occ
 
-model_name = "cylinder_3"
+model_name = "cylinder_pi"
 gmsh.model.add(model_name)
 
 # CR20216 battery
-CR2016_diameter = 1
+CR2016_diameter = 2*np.sqrt(1/np.pi)
 CR2016_thickness =3
 
 # Cylinder
@@ -44,7 +44,7 @@ factory.remove(to_remove)
 # Mesh
 factory.synchronize()
 #gmsh.option.setNumber("Mesh.MeshSizeFromCurvature", 20)
-gmsh.option.setNumber("Mesh.MeshSizeMax", 1)
+gmsh.option.setNumber("Mesh.MeshSizeMax", 0.1)
 gmsh.model.mesh.generate(3)
 
 # Dump

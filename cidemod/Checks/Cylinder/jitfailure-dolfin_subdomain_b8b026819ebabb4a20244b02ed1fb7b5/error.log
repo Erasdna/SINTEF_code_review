@@ -1,4 +1,0 @@
-/tmp/tmpgp5gvuvq/dolfin_subdomain_b8b026819ebabb4a20244b02ed1fb7b5.cpp: In member function ‘virtual bool dolfin::dolfin_subdomain_b8b026819ebabb4a20244b02ed1fb7b5::inside(Eigen::Ref<const Eigen::Matrix<double, -1, 1> >, bool) const’:
-/tmp/tmpgp5gvuvq/dolfin_subdomain_b8b026819ebabb4a20244b02ed1fb7b5.cpp:64:36: error: expected primary-expression before ‘<’ token
-   64 |          return x[0]>=-tol && x[0]=<1;
-      |                                    ^
