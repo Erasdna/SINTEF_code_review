@@ -7,13 +7,14 @@ N=np.arange(10,400,50)
 Tt=np.zeros([7,8])
 Tt2=np.zeros([7,8])
 
+##OBS! This is not correct!!!
 solvers=[
     pybamm.CasadiSolver(mode="fast"), 
-    pybamm.IDAKLUSolver,
-    pybamm.JaxSolver,
-    pybamm.AlgebraicSolver,
-    pybamm.ScikitsOdeSolver,
-    pybamm.ScikitsDaeSolver,
+    #pybamm.IDAKLUSolver,
+    #pybamm.JaxSolver,
+    #pybamm.AlgebraicSolver,
+    #pybamm.ScikitsOdeSolver,
+    #pybamm.ScikitsDaeSolver,
     pybamm.BaseSolver
 ]
 
@@ -35,14 +36,17 @@ for j in range(len(solvers)):
         sim = pybamm.Simulation(
             model, parameter_values=parameter_values, var_pts=var_pts
         )
-        res=sim.solve([0,3600])
+        #res=sim.solve([0,3600], solver=solvers[j])
+        res=solvers[j].solve(model, [0,3600])
         print(res.solve_time)
         Tt[j,i]=res.solve_time.value
 
         sim = pybamm.Simulation(
             model, parameter_values=parameter_values, var_pts=var_pts
         )
-        res=sim.solve([0,3600])
+        #res=sim.solve([0,3600], solver=solvers[j])
+        res=solvers[j].solve(model, [0,3600])
+
         Tt2[j,i]=res.solve_time.value
 
 np.savetxt("..Data/SolverTime2.txt",Tt)

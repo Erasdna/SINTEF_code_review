@@ -30,7 +30,7 @@ Nx=np.arange(10,400,20)
 #Tid
 pbs=[]
 Tt=np.empty([0,0])
-T_exact=np.empty([0,0]);
+T_exact=np.empty([0,0])
 its=np.empty([0,0])
 #Iterer gjennom de forskjellige størrelsene
 for i in Nx:
