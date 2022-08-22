@@ -27,16 +27,15 @@ jsonstruct_chen = parseBattmoJson('ParameterData/ParameterSets/Chen2020/chen2020
 jsonstruct = convertTemp(jsonstruct_chen,jsonstruct_org);
 jsonstruct.use_thermal=1;
 jsonstruct.include_current_collectors=1;
-% jsonstruct.NegativeElectrode.ActiveMaterial.specificHeatCapacity=632;
-% jsonstruct.NegativeElectrode.ActiveMaterial.thermalConductivity=5;
-% jsonstruct.NegativeElectrode.ActiveMaterial.InterDiffusionCoefficient=3.3e-14;
-% 
-% jsonstruct.PositiveElectrode.ActiveMaterial.specificHeatCapacity=900;
-% jsonstruct.PositiveElectrode.ActiveMaterial.thermalConductivity=5;
-% jsonstruct.PositiveElectrode.ActiveMaterial.InterDiffusionCoefficient=4e-15;
-% 
-% jsonstruct.Electrolyte.specificHeatCapacity=1518;
-% jsonstruct.Electrolyte.thermalConductivity=0.099;
+jsonstruct.NegativeElectrode.ActiveMaterial.specificHeatCapacity=632;
+jsonstruct.NegativeElectrode.ActiveMaterial.thermalConductivity=5;
+jsonstruct.NegativeElectrode.ActiveMaterial.InterDiffusionCoefficient=3.3e-14;
+
+jsonstruct.PositiveElectrode.ActiveMaterial.specificHeatCapacity=900;
+jsonstruct.PositiveElectrode.ActiveMaterial.thermalConductivity=5;
+jsonstruct.PositiveElectrode.ActiveMaterial.InterDiffusionCoefficient=4e-15;
+
+jsonstruct.Electrolyte.he
 %%
 paramobj = BatteryInputParams(jsonstruct);
 
@@ -146,14 +145,14 @@ model.verbose = true;
 [wellSols, states, report] = simulateScheduleAD(initstate, model, schedule, 'OutputMinisteps', true, 'NonLinearSolver', nls); 
 
 %% Process output and recover the output voltage and current from the output states.
-ind = cellfun(@(x) not(isempty(x)), states); 
-states = states(ind);
-Enew = cellfun(@(x) x.Control.E, states); 
-Inew = cellfun(@(x) x.Control.I, states);
-Tmax = cellfun(@(x) max(x.ThermalModel.T), states);
-[SOCN, SOCP] =  cellfun(@(x) model.calculateSOC(x), states);
-time = cellfun(@(x) x.time, states); 
-plot(time,Tmax)
+% ind = cellfun(@(x) not(isempty(x)), states); 
+% states = states(ind);
+% Enew = cellfun(@(x) x.Control.E, states); 
+% Inew = cellfun(@(x) x.Control.I, states);
+% Tmax = cellfun(@(x) max(x.ThermalModel.T), states);
+% [SOCN, SOCP] =  cellfun(@(x) model.calculateSOC(x), states);
+% time = cellfun(@(x) x.time, states); 
+% plot(time,Tmax)
 %% Plot the the output voltage and current
 %plotDashboard(model, states, 'step', 0);
 

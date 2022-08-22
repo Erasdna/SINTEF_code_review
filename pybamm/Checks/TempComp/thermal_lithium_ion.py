@@ -17,7 +17,7 @@ lumped_thermal_model = pybamm.lithium_ion.DFN(options)
 models = [full_thermal_model, lumped_thermal_model]
 
 # load parameter values and process models and geometry
-param = models[0].default_parameter_values
+param = pybamm.ParameterValues(chemistry=pybamm.parameter_sets.Marquis2019)
 
 # for x-full, cooling is only implemented on the surfaces
 # so set other forms of cooling to zero for comparison.
@@ -58,9 +58,7 @@ for i, model in enumerate(models):
 
 # plot
 output_variables = [
-    "Terminal voltage [V]",
-    "X-averaged cell temperature [K]",
-    "Cell temperature [K]",
+    "X-averaged cell temperature [K]"
 ]
 labels = ["Full thermal model", "Lumped thermal model"]
 plot = pybamm.QuickPlot(solutions, output_variables, labels)
